@@ -7,7 +7,7 @@ namespace SharpMeals
 {
     public class MealFactory
     {
-        public IList<Meal> mealList { get; private set; }
+        public List<Meal> mealList { get; private set; }
 
         public Meal MealOfToday 
         {
@@ -36,10 +36,10 @@ namespace SharpMeals
             for(int i = ROW_START; i < ROW_COUNT; i += ROW_SPAN)
             {
                 var meal = new Meal();
-                var fixLunchTds = scrapper.FixMenu[i].SelectNodes("/td"); 
-                var fixDinnerTds = scrapper.FixMenu[i + 1].SelectNodes("/td");
+                var fixLunchTds = scrapper.FixMenu[i].SelectNodes("./td"); 
+                var fixDinnerTds = scrapper.FixMenu[i + 1].SelectNodes("./td");
                 var alternativeTds = scrapper.AlternativeMenu[1 + (i / 2)].SelectNodes("/td");
-                var date = fixLunchTds[0].SelectSingleNode("p[@class='style6']/b").InnerText;
+                var date = fixLunchTds[0].SelectSingleNode(".//b").InnerText;
                 meal.Date = date;
                 meal.Lunch = ScrapeMeals(fixLunchTds[1]);
                 meal.Dinner = ScrapeMeals(fixDinnerTds[0]);
@@ -60,7 +60,7 @@ namespace SharpMeals
         private IList<string[]> ScrapeMeals(HtmlNode nodes)
         {
             var result = new List<string[]>();
-            var lines = nodes.ToString().Replace("&nbsp;", ", ").Split( ("<br>").ToCharArray() );
+            var lines = nodes.InnerText.Replace("&nbsp;", ", ").Split( ("<br>").ToCharArray() );
             for(int i = 1; i < lines.Length; ++i) 
             {
                 var line = lines[i];
