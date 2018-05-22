@@ -39,16 +39,13 @@ namespace SharpMeals
                 var fixLunchTds = scrapper.FixMenu[i].SelectNodes("/td"); 
                 var fixDinnerTds = scrapper.FixMenu[i + 1].SelectNodes("/td");
                 var alternativeTds = scrapper.AlternativeMenu[1 + (i / 2)].SelectNodes("/td");
-                
                 var date = fixLunchTds[0].SelectSingleNode("p[@class='style6']/b").InnerText;
                 meal.Date = date;
-
-
                 meal.Lunch = ScrapeMeals(fixLunchTds[1]);
                 meal.Dinner = ScrapeMeals(fixDinnerTds[0]);
                 meal.Alternative = ScrapeMeals(alternativeTds[1]);
                 
-                var replaced = Regex.Replace(fixLunchTds[2].ToString(), "[^\\d\\s]", "").Trim();       //Regex stuff
+                var replaced = Regex.Replace(fixLunchTds[2].ToString(), "[^\\d\\s]", "").Trim();    
                 var nutritions = Regex.Replace(replaced, "\\s{2,}", " ").Split(' ');
                 meal.NutritionFacts.EnergyByCal = Int32.Parse(nutritions[0]);
                 meal.NutritionFacts.CarbohydratePercentage = Int32.Parse(nutritions[1]);
@@ -62,10 +59,8 @@ namespace SharpMeals
         //To Do: test if working
         private IList<string[]> ScrapeMeals(HtmlNode nodes)
         {
-            
-
             var result = new List<string[]>();
-            var lines = nodes.InnerText.Replace("&nbsp;", ", ").Split( ("<br>").ToCharArray() );
+            var lines = nodes.ToString().Replace("&nbsp;", ", ").Split( ("<br>").ToCharArray() );
             for(int i = 1; i < lines.Length; ++i) 
             {
                 var line = lines[i];
