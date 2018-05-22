@@ -14,7 +14,7 @@ namespace SharpMeals
             get 
             {
                 DateTime now = DateTime.Now;
-                string today = now.ToString("dd/MM/yyyy");
+                string today = now.ToString("dd/MM");
                 foreach(var meal in mealList)
                 {
                     if(meal.Date == today)
@@ -32,6 +32,7 @@ namespace SharpMeals
         {
             mealList = new List<Meal>();
             var scrapper = new MealScrapper();
+
             for(int i = ROW_START; i < ROW_COUNT; i += ROW_SPAN)
             {
                 var meal = new Meal();
@@ -39,8 +40,9 @@ namespace SharpMeals
                 var fixDinnerTds = scrapper.FixMenu[i + 1].SelectNodes("/td");
                 var alternativeTds = scrapper.AlternativeMenu[1 + (i / 2)].SelectNodes("/td");
                 
-                var date = fixLunchTds[0].InnerText.Split(' ')[0];
+                var date = fixLunchTds[0].SelectSingleNode("p[@class='style6']/b").InnerText;
                 meal.Date = date;
+
 
                 meal.Lunch = ScrapeMeals(fixLunchTds[1]);
                 meal.Dinner = ScrapeMeals(fixDinnerTds[0]);
@@ -60,8 +62,10 @@ namespace SharpMeals
         //To Do: test if working
         private IList<string[]> ScrapeMeals(HtmlNode nodes)
         {
+            
+
             var result = new List<string[]>();
-            var lines = nodes.ToString().Replace("&nbsp;", ", ").Split( ("<br>").ToCharArray() );
+            var lines = nodes.InnerText.Replace("&nbsp;", ", ").Split( ("<br>").ToCharArray() );
             for(int i = 1; i < lines.Length; ++i) 
             {
                 var line = lines[i];

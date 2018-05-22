@@ -9,8 +9,8 @@ namespace SharpMeals
         public IList<string[]> Lunch { get; internal set; }
         public IList<string[]> Dinner { get; internal set; }
         public IList<string[]> Alternative { get; internal set; } 
-        public _NutritionFacts NutritionFacts { get; internal set; }
-        public class _NutritionFacts
+        internal _NutritionFacts NutritionFacts { get; set; }
+        internal class _NutritionFacts
         {
             public int EnergyByCal { get; internal set; }
             public int CarbohydratePercentage { get; internal set; }

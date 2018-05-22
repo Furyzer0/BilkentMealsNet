@@ -7,7 +7,7 @@ namespace SharpMeals
 {
     public class MealScrapper
     {
-        public const string URL = "http://kafemud.bilkent.edu.tr/monu_eng.html";
+        private const string URL = "http://kafemud.bilkent.edu.tr/monu_eng.html";
         public HtmlNodeCollection FixMenu { get; private set; }
         public HtmlNodeCollection AlternativeMenu { get; private set; }
 
