@@ -13,11 +13,11 @@ namespace SharpMeals
 
         public MealScrapper()
         {
-            HtmlWeb web = new HtmlWeb();
+            var web = new HtmlWeb();
             var htmlDoc = web.Load(URL);
-            var mealContainers = htmlDoc.DocumentNode.SelectNodes("//table[@class='icerik']/tbody"); //To Do: test this xpath
-            FixMenu = mealContainers[1].SelectNodes("/tr[2]//table/tbody/tr");
-            AlternativeMenu = mealContainers[2].SelectNodes("/tr[3]//table/tbody/tr");
+            var mealContainers = htmlDoc.DocumentNode.SelectNodes("//table[@class='icerik']/tr");
+            FixMenu = mealContainers[1].SelectNodes(".//table/tr");
+            AlternativeMenu = mealContainers[2].SelectNodes(".//table/tr");
         }
     }
 }

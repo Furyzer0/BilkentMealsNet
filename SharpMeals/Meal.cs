@@ -5,17 +5,17 @@ namespace SharpMeals
 {
     public class Meal
     {
-        public string Date { get; protected set; }
-        public IReadOnlyCollection<string[]> Lunch { get; protected set; }
-        public IReadOnlyCollection<string[]> Dinner { get; protected set; }
-        public IReadOnlyCollection<string[]> Alternative { get; protected set; } 
-        public _NutritionFacts NutritionFacts { get; protected set; }
+        public string Date { get; internal set; }
+        public IList<string[]> Lunch { get; internal set; }
+        public IList<string[]> Dinner { get; internal set; }
+        public IList<string[]> Alternative { get; internal set; } 
+        public _NutritionFacts NutritionFacts { get; internal set; }
         public class _NutritionFacts
         {
-            public int EnergyByCal { get; protected set; }
-            public int CarbohydratePercentage { get; protected set; }
-            public int ProteinPercentage { get; protected set; }
-            public int FatPercentage { get; protected set; }
+            public int EnergyByCal { get; internal set; }
+            public int CarbohydratePercentage { get; internal set; }
+            public int ProteinPercentage { get; internal set; }
+            public int FatPercentage { get; internal set; }
         }
     }
 }
