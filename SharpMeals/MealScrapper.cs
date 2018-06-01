@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http;
+using System.Net;
 using HtmlAgilityPack;
 
 namespace SharpMeals
@@ -13,8 +14,13 @@ namespace SharpMeals
 
         public MealScrapper()
         {
-            var web = new HtmlWeb();
-            var htmlDoc = web.Load(URL);
+            var client = new WebClient();
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.Load(client.OpenRead(URL), Encoding.UTF8);
+
+            Console.WriteLine(htmlDoc.Encoding);
+            //Console.OutputEncoding = Encoding.UTF8;
+            //Console.WriteLine(htmlDoc.DocumentNode.OuterHtml);
             var mealContainers = htmlDoc.DocumentNode.SelectNodes("//table[@class='icerik']/tr");
             FixMenu = mealContainers[1].SelectNodes(".//table/tr");
             AlternativeMenu = mealContainers[2].SelectNodes(".//table/tr");

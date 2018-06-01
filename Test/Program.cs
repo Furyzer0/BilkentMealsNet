@@ -21,13 +21,22 @@ namespace Test
         {
             var scrapper = new MealScrapper();
             //var fixLunchTds = scrapper.FixMenu[1].SelectNodes("./td");
-            //Console.WriteLine(fixLunchTds[0].SelectSingleNode(".//b").InnerText);
+            //Console.WriteLine(fixLunchTds[0].SelectSingleNode(".//b").InnerText);                            var 
+            var meals = scrapper.FixMenu.Concat(scrapper.AlternativeMenu);
 
-            using(var file = System.IO.File.Create("doc.html"))
+            using(var file = System.IO.File.Create("context.txt"))
             using(var writer = new System.IO.StreamWriter(file))
             {
-                foreach(var meal in scrapper.FixMenu.Concat(scrapper.AlternativeMenu))
+                foreach (var meal in meals)
                     writer.Write(meal.InnerText);   
+            }
+
+            using(var file = System.IO.File.Create("doc.html"))
+            using(var writer = new System.IO.StreamWriter(file, System.Text.Encoding.UTF8))
+            {
+                
+                foreach (var doc in meals) 
+                    writer.Write(doc.OuterHtml);                        
             }
         }
 
@@ -36,9 +45,9 @@ namespace Test
             var factory = new MealFactory();
 
             using(var file = System.IO.File.Create("meals.txt"))
-            using(var writer = new System.IO.StreamWriter(file))
+            using(var writer = new System.IO.StreamWriter(file, System.Text.Encoding.UTF8))
             {
-                factory.mealList.ForEach( m => writer.Write(m) );
+                factory.mealList.ForEach( m => writer.Write(m.ToString()) );
             }
         }
     }

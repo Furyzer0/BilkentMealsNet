@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using System.Text.RegularExpressions;
@@ -24,69 +25,66 @@ namespace SharpMeals
                 return null;
             }
         }
-        private const int ROW_START = 1; //First row is placeholder
-        private const int ROW_COUNT = 15;
-        private const int ROW_SPAN = 2;
-
         public MealFactory()
         {
             mealList = new List<Meal>();
             var scrapper = new MealScrapper();
+            
 
-            for(int i = ROW_START; i < ROW_COUNT; i += ROW_SPAN)
+            for(int i = 1; i < 15; i += 2)
             {
                 var meal = new Meal();
                 var fixLunchTds = scrapper.FixMenu[i].SelectNodes("./td"); 
                 var fixDinnerTds = scrapper.FixMenu[i + 1].SelectNodes("./td");
-                var alternativeTds = scrapper.AlternativeMenu[1 + (i / 2)].SelectNodes("/td");
+                var alternativeTds = scrapper.AlternativeMenu[1 + (i / 2)].SelectNodes("./td");
                 var date = fixLunchTds[0].SelectSingleNode(".//b").InnerText;
                 meal.Date = date;
                 meal.Lunch = ScrapeMeals(fixLunchTds[1]);
                 meal.Dinner = ScrapeMeals(fixDinnerTds[0]);
                 meal.Alternative = ScrapeMeals(alternativeTds[1]);
                 
-                var replaced = Regex.Replace(fixLunchTds[2].ToString(), "[^\\d\\s]", "").Trim();    
+                /*var replaced = Regex.Replace(fixLunchTds[2].ToString(), "[^\\d\\s]", "").Trim();    
                 var nutritions = Regex.Replace(replaced, "\\s{2,}", " ").Split(' ');
                 meal.NutritionFacts.EnergyByCal = Int32.Parse(nutritions[0]);
                 meal.NutritionFacts.CarbohydratePercentage = Int32.Parse(nutritions[1]);
                 meal.NutritionFacts.ProteinPercentage = Int32.Parse(nutritions[2]);
-                meal.NutritionFacts.FatPercentage = Int32.Parse(nutritions[3]);
+                meal.NutritionFacts.FatPercentage = Int32.Parse(nutritions[3]);*/
 
                 mealList.Add(meal);
             }
         }
-
-        //To Do: test if working
-        private IList<string[]> ScrapeMeals(HtmlNode nodes)
+        private IList<MealName> ScrapeMeals(HtmlNode node)
         {
-            var result = new List<string[]>();
-            var lines = nodes.InnerText.Replace("&nbsp;", ", ").Split( ("<br>").ToCharArray() );
-            for(int i = 1; i < lines.Length; ++i) 
+            var result = new List<MealName>();
+            var htmlDoc = new HtmlDocument();
+            var lines = node.OuterHtml
+                            .Replace("&nbsp", "")
+                            .Replace("\n", "")
+                            .Split(new[]{"<br>"}, StringSplitOptions.None);
+            foreach(var line in lines)
             {
-                var line = lines[i];
-
-                if(line.Contains("veya / or") && lines.Length == 5)
+                htmlDoc.LoadHtml(line);
+                var text = htmlDoc.DocumentNode.InnerText;
+                if(text.Contains("veya / or") && lines.Length == 5) //fix menu
                 {
-                    var secondLine = line
-                                        .Replace("veya / or veya / or", "veya / or")
-                                        .Split("veya / or".ToCharArray());
-                    for(int j = 0; j < 2; ++j) {
-                        var secondLineSplitted = secondLine[i].Split('/');
-                        var food = new string[] {   
-                            secondLineSplitted[0].Trim(),
-                            secondLineSplitted[1].Trim()
-                        };
-                        result.Add(food);
-                    }
+                    var mealNames = new MealName[2];
+                    var textSplitted = text.Split(new []{"veya / or"}, StringSplitOptions.None);
+                    var meal0 = textSplitted[0].Split('/');
+                    var meal1 = textSplitted[1].Split('/');
+                    mealNames[0] = new MealName(meal0[0].Trim(), meal0[1].Trim());
+                    mealNames[1] = new MealName(meal1[0].Trim(), meal1[1].Trim());
+
+                    result.AddRange(mealNames);
                 }
                 else 
                 {
-                    var lineSplitted = line.Replace("veya / or", ", ").Split('/');
-                    var food = new string[] {
-                        lineSplitted[0].Trim(),
-                        lineSplitted[1].Trim()
-                    };
-                    result.Add(food);
+                    var meal = text.Split('/');
+                    result.Add( 
+                        new MealName(
+                            meal[0].Trim(),
+                            meal[1].Trim()
+                        )
+                    );
                 }
             }
 

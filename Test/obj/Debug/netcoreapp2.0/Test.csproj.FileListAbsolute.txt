@@ -11,3 +11,29 @@
 /home/zer0/Documents/Github/BilkentMealsNet/Test/obj/Debug/netcoreapp2.0/Test.dll
 /home/zer0/Documents/Github/BilkentMealsNet/Test/obj/Debug/netcoreapp2.0/Test.pdb
 /home/zer0/Documents/Github/BilkentMealsNet/Test/obj/Debug/netcoreapp2.0/Test.csprojResolveAssemblyReference.cache
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/bin/Debug/netcoreapp2.0/Test.deps.json
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/bin/Debug/netcoreapp2.0/Test.runtimeconfig.json
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/bin/Debug/netcoreapp2.0/Test.runtimeconfig.dev.json
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/bin/Debug/netcoreapp2.0/Test.dll
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/bin/Debug/netcoreapp2.0/Test.pdb
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/bin/Debug/netcoreapp2.0/SharpMeals.dll
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/bin/Debug/netcoreapp2.0/SharpMeals.pdb
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/obj/Debug/netcoreapp2.0/Test.csprojResolveAssemblyReference.cache
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/obj/Debug/netcoreapp2.0/Test.csproj.CoreCompileInputs.cache
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/obj/Debug/netcoreapp2.0/Test.AssemblyInfoInputs.cache
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/obj/Debug/netcoreapp2.0/Test.AssemblyInfo.cs
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/obj/Debug/netcoreapp2.0/Test.dll
+/media/zer0/128GB SSD/Users/sahin/Documents/GitHub/BilkentMealsNet/Test/obj/Debug/netcoreapp2.0/Test.pdb
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\obj\Debug\netcoreapp2.0\Test.csprojResolveAssemblyReference.cache
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\obj\Debug\netcoreapp2.0\Test.csproj.CoreCompileInputs.cache
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\obj\Debug\netcoreapp2.0\Test.AssemblyInfoInputs.cache
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\obj\Debug\netcoreapp2.0\Test.AssemblyInfo.cs
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\obj\Debug\netcoreapp2.0\Test.dll
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\obj\Debug\netcoreapp2.0\Test.pdb
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\bin\Debug\netcoreapp2.0\Test.deps.json
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\bin\Debug\netcoreapp2.0\Test.runtimeconfig.json
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\bin\Debug\netcoreapp2.0\Test.runtimeconfig.dev.json
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\bin\Debug\netcoreapp2.0\Test.dll
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\bin\Debug\netcoreapp2.0\Test.pdb
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\bin\Debug\netcoreapp2.0\SharpMeals.dll
+C:\Users\sahin\Documents\GitHub\BilkentMealsNet\Test\bin\Debug\netcoreapp2.0\SharpMeals.pdb
